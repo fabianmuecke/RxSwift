@@ -15,22 +15,84 @@ import Dispatch
 
 import Foundation
 
-class ConcurrentDispatchQueueSchedulerTests: RxTest {
-    func createScheduler() -> SchedulerType {
+class ConcurrentDispatchQueueSchedulerTests: SchedulerTests {
+   override func createScheduler() -> SchedulerType {
         ConcurrentDispatchQueueScheduler(qos: .userInitiated)
     }
 }
 
-final class SerialDispatchQueueSchedulerTests: RxTest {
-    func createScheduler() -> SchedulerType {
+final class SerialDispatchQueueSchedulerTests: SchedulerTests {
+    override func createScheduler() -> SchedulerType {
         SerialDispatchQueueScheduler(qos: .userInitiated)
+    }
+}
+
+@available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+final class MainActorSchedulerTests: SchedulerTests {
+    override func createScheduler() -> SchedulerType {
+        ActorScheduler(actorType: MainActor.self)
+    }
+    
+    func test_executedOnMainActor() async throws {
+        let expectScheduling = expectation(description: "wait")
+        let start = Date()
+
+        var interval = 0.0
+
+        let scheduler = self.createScheduler()
+        _ = scheduler.scheduleRelative(1, dueTime: .milliseconds(500)) { _ -> Disposable in
+            interval = Date().timeIntervalSince(start)
+            MainActor.preconditionIsolated()
+            expectScheduling.fulfill()
+            return Disposables.create()
+        }
+
+        await fulfillment(of: [expectScheduling], timeout: 1.0)
+
+        XCTAssertEqual(interval, 0.5, accuracy: 0.2)
+    }
+}
+
+@available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+final class LocalActorSchedulerTests: SchedulerTests {
+    actor TestActor {
+        
+    }
+    
+    let actor = TestActor()
+    
+    override func createScheduler() -> SchedulerType {
+        ActorScheduler(actor: actor)
+    }
+    
+    func test_executedOnLocalActor() async throws {
+        let expectScheduling = expectation(description: "wait")
+        let start = Date()
+
+        var interval = 0.0
+
+        let scheduler = self.createScheduler()
+        _ = scheduler.scheduleRelative(1, dueTime: .milliseconds(500)) { [actor] _ -> Disposable in
+            interval = Date().timeIntervalSince(start)
+            actor.preconditionIsolated()
+            expectScheduling.fulfill()
+            return Disposables.create()
+        }
+
+        await fulfillment(of: [expectScheduling], timeout: 1.0)
+
+        XCTAssertEqual(interval, 0.5, accuracy: 0.2)
     }
 }
 
 class OperationQueueSchedulerTests: RxTest {
 }
 
-extension ConcurrentDispatchQueueSchedulerTests {
+class SchedulerTests: RxTest {
+    func createScheduler() -> SchedulerType {
+        fatalError("Implement in subclass")
+    }
+    
     func test_scheduleRelative() {
         let expectScheduling = expectation(description: "wait")
         let start = Date()

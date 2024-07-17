@@ -789,6 +789,7 @@
 		CB883B451BE256D4000AC2EE /* BooleanDisposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB883B441BE256D4000AC2EE /* BooleanDisposable.swift */; };
 		CD8F7AC527BA9187001574EB /* Infallible+Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8F7AC427BA9187001574EB /* Infallible+Driver.swift */; };
 		CDDEF16A1D4FB40000CA8546 /* Disposables.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDEF1691D4FB40000CA8546 /* Disposables.swift */; };
+		D2FCCB4B2C47F05A00961E64 /* ActorScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FCCB4A2C47F05A00961E64 /* ActorScheduler.swift */; };
 		D9080ACF1EA05AE0002B433B /* RxNavigationControllerDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9080ACD1EA05A16002B433B /* RxNavigationControllerDelegateProxy.swift */; };
 		D9080AD41EA05DE9002B433B /* UINavigationController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9080AD21EA05DDF002B433B /* UINavigationController+Rx.swift */; };
 		D9080AD81EA06189002B433B /* UINavigationController+RxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9080AD71EA06189002B433B /* UINavigationController+RxTests.swift */; };
@@ -1453,6 +1454,7 @@
 		CB883B441BE256D4000AC2EE /* BooleanDisposable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooleanDisposable.swift; sourceTree = "<group>"; };
 		CD8F7AC427BA9187001574EB /* Infallible+Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Infallible+Driver.swift"; sourceTree = "<group>"; };
 		CDDEF1691D4FB40000CA8546 /* Disposables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Disposables.swift; sourceTree = "<group>"; };
+		D2FCCB4A2C47F05A00961E64 /* ActorScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorScheduler.swift; sourceTree = "<group>"; };
 		D9080ACD1EA05A16002B433B /* RxNavigationControllerDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxNavigationControllerDelegateProxy.swift; sourceTree = "<group>"; };
 		D9080AD21EA05DDF002B433B /* UINavigationController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Rx.swift"; sourceTree = "<group>"; };
 		D9080AD71EA06189002B433B /* UINavigationController+RxTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+RxTests.swift"; sourceTree = "<group>"; };
@@ -1800,6 +1802,7 @@
 				C8FA89131C30405400CD3A17 /* VirtualTimeScheduler.swift */,
 				C8FA89161C30409900CD3A17 /* HistoricalScheduler.swift */,
 				C8FA891B1C30412A00CD3A17 /* HistoricalSchedulerTimeConverter.swift */,
+				D2FCCB4A2C47F05A00961E64 /* ActorScheduler.swift */,
 			);
 			path = Schedulers;
 			sourceTree = "<group>";
@@ -3761,6 +3764,7 @@
 				C84CC54E1BDCF48200E06A64 /* LockOwnerType.swift in Sources */,
 				C8FA89151C30405400CD3A17 /* VirtualTimeScheduler.swift in Sources */,
 				C84CC5531BDCF49300E06A64 /* SynchronizedOnType.swift in Sources */,
+				D2FCCB4B2C47F05A00961E64 /* ActorScheduler.swift in Sources */,
 				C820A8601EB4DA5A00D431BC /* Generate.swift in Sources */,
 				786DED7024F847BF008C4FAC /* Infallible+Create.swift in Sources */,
 				78B6157523B69F49009C2AD9 /* Binder.swift in Sources */,
